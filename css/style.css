@@ -32,11 +32,11 @@ button { cursor: pointer; }
 .tiny-divider span { background: var(--ivory); position: relative; top: -15px; padding: 0 12px; font-size: 19px; }
 
 /* Intro envelope */
-.intro-screen { position: fixed; inset: 0; z-index: 20; display: grid; place-items: center; text-align: center; padding: 25px; background: radial-gradient(circle at 50% 30%, #fffdf9, var(--cream)); transition: opacity .8s ease, visibility .8s ease; }
+.intro-screen { position: fixed; inset: 0; z-index: 20; display: grid; place-items: center; text-align: center; padding: 25px; background: radial-gradient(circle at 50% 30%, #fffdf9, var(--cream)); transition: opacity .8s ease, visibility .20s ease; }
 .intro-screen.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
 .intro-content h1 { font: 500 clamp(1.8rem, 4vw, 2.7rem) 'Playfair Display', serif; margin: 28px 0 4px; }
 .intro-note { color: var(--muted); font-size: 13px; margin: 0 0 24px; }
-.envelope { width: 190px; height: 130px; margin: 35px auto 0; position: relative; perspective: 700px; }
+.envelope { width: 190px; height: 130px; margin: 85px auto 0; position: relative; perspective: 700px; }
 .envelope-back { position: absolute; inset: 0; background: #d8b7a9; border-radius: 5px; }
 .letter { position: absolute; z-index: 1; width: 82%; height: 105%; left: 9%; top: -3%; background: #fffaf4; display: grid; place-content: center; color: var(--mocha); box-shadow: 0 2px 8px #9d766322; transition: transform .8s ease; }
 .letter p { font: 20px 'Great Vibes', cursive; margin: 0; }
@@ -81,7 +81,7 @@ button { cursor: pointer; }
 .foot-left { left: 43px; }.foot-right { right: 37px; }
 .teddy-bow { position: absolute; z-index: 5; top: 145px; left: 105px; color: #f5d9d2; font-size: 32px; }
 .star { position: absolute; z-index: 2; color: var(--pink-dark); font-size: 28px; }.star-a { top: 55px; left: 20%; }.star-b { top: 120px; right: 10%; }.star-c { bottom: 70px; left: 15%; }
-.hero-caption { position: absolute; bottom: 12px; color: var(--sage-dark); font: 22px 'Great Vibes', cursive; }
+.hero-caption { position: absolute; bottom: 2px; color: var(--sage-dark); font: 22px 'Great Vibes', cursive; }
 .hero-cloud { position: absolute; width: 170px; height: 55px; border-radius: 50px; background: #fffaf4; opacity: .55; }.cloud-one { top: 60px; left: -50px; }.cloud-two { bottom: 30px; right: -50px; }
 .scroll-cue { position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%); color: var(--muted); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; }.scroll-cue span { display: block; text-align: center; font-size: 20px; }
 
@@ -147,7 +147,45 @@ button { cursor: pointer; }
 /* Floating details, lightbox and music */
 .floating-decor span { position: fixed; z-index: 0; color: #d7b6a8; opacity: .28; pointer-events: none; animation: floatDecor 9s ease-in-out infinite; }.floating-decor span:nth-child(1) { top: 20%; left: 3%; font-size: 22px; }.floating-decor span:nth-child(2) { top: 60%; right: 4%; font-size: 28px; animation-delay: 2s; }.floating-decor span:nth-child(3) { bottom: 12%; left: 8%; font-size: 25px; animation-delay: 4s; }.floating-decor span:nth-child(4) { top: 35%; right: 9%; font-size: 35px; animation-delay: 1s; }.floating-decor span:nth-child(5) { top: 80%; right: 20%; font-size: 18px; animation-delay: 3s; }
 .music-toggle { position: fixed; right: 20px; bottom: 20px; z-index: 8; width: 42px; height: 42px; border: 0; border-radius: 50%; background: var(--mocha); color: white; font-size: 20px; box-shadow: var(--shadow); }
-.lightbox { position: fixed; inset: 0; z-index: 30; background: #2e2420eF; display: none; place-items: center; padding: 40px; }.lightbox.show { display: grid; }.lightbox img { max-width: min(900px, 95vw); max-height: 85vh; object-fit: contain; border: 8px solid white; }.lightbox-close { position: absolute; top: 20px; right: 28px; background: none; border: 0; color: white; font-size: 40px; }
+
+/* Lightbox image - responsive screen fix */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 30;
+    background: #2e2420ef;
+    display: none;
+    place-items: center;
+    padding: 20px;
+    overflow: hidden;
+}
+
+.lightbox.show {
+    display: grid;
+}
+
+.lightbox img {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 85vh;
+    max-height: 85dvh;
+    object-fit: contain;
+    border: 8px solid white;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: 0;
+    color: white;
+    font-size: 40px;
+    z-index: 31;
+}
+
 @keyframes teddyFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 @keyframes floatDecor { 0%,100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-25px) rotate(12deg); } }
 
@@ -164,11 +202,11 @@ button { cursor: pointer; }
   .navigation.open { display: flex; }
   .navigation a { font-size: 12px; }
   .hero { min-height: auto; padding: 65px 18px 75px; }
-  .hero-art { min-height: 350px; }.sun-circle { width: 285px; height: 285px; }.teddy { transform: scale(.88); }
+  .hero-art { min-height: 450px; }.sun-circle { width: 285px; height: 285px; }.teddy { transform: scale(.88); }
   .countdown { gap: 7px; }.count-box { width: 76px; padding: 13px 5px; }.count-box strong { font-size: 25px; }.count-box span { font-size: 8px; }
   .two-column { grid-template-columns: 1fr; }.photo-frame img { height: 300px; }.parents-copy { text-align: center; }
   .detail-grid { gap: 10px; }.detail-card { padding: 22px 10px; }.detail-card h3 { font-size: 17px; }
-  .venue-actions { flex-direction: column; align-items: stretch; }.gallery-grid { grid-template-columns: 1fr 1fr; gap: 10px; }.gallery-photo { height: 190px; }.photo-three { display: none; }
+  .venue-actions { flex-direction: column; align-items: stretch; }.gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr));gap: 10px;margin: 0 20px; }.gallery-photo { height: 190px; width: 100%; }.photo-three { display: block; grid-column: 1 / -1; height: 220px; margin-top: 20px;}
   .rsvp-card { padding: 35px 22px; }.timeline-item { grid-template-columns: 85px 1fr; gap: 12px; }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }
